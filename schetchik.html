@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM Counter</title>
+    <style>
+        #container {
+            width: 220px;
+            height: 40px;
+            margin: auto;
+            margin-top: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            background-color: #eacc9b;
+            border-radius: 5px;
+            border: 1.5px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="form_input">0</div>
+    <button id="plus">+</button>
+    <button id="minus">-</button>
+    <button id="clear">clear</button>
+    <button id="disappear">disappear</button>
+</div>
+<script>
+  const value = document.getElementById('form_input');
+  const container = document.getElementById('container');
+  const plus = document.getElementById('plus');
+  const minus = document.getElementById('minus');
+  const clear = document.getElementById('clear');
+  const disappear = document.getElementById('disappear');
+
+  getCurrentValue = () => {
+    const value = document.getElementById('form_input');
+    return Number(value.textContent);
+  }
+  getCurrentValue()
+
+  increment = () => {
+    plus.addEventListener('click', () => {
+      value.textContent = getCurrentValue() + 1;
+      valueColor();
+    })
+  }
+  increment()
+
+  decrement = () => {
+    minus.addEventListener('click', () => {
+      value.textContent = getCurrentValue() - 1;
+      valueColor();
+    })
+  }
+  decrement()
+
+  clear.addEventListener('click', () => {
+    value.textContent = 0;
+  })
+
+  valueColor = () => {
+    const value = document.getElementById('form_input');
+    if (value.textContent >= 10) {
+      value.style.color = "red"
+    }
+    if (value.textContent <= 0) {
+      value.style.color = "blue"
+    }
+  }
+  valueColor()
+
+  disappear.addEventListener('click', () => {
+    container.remove();
+  })
+
+</script>
+</body>
+</html>
